@@ -2,7 +2,7 @@
 set -ex
 
 # echo "This is the value specified for the input 'example_step_input': ${example_step_input}"
-sh ./scripts/parse_profile_report.sh
+sh $BITRISE_STEP_SOURCE_DIR/scripts/parse_profile_report.sh
 #
 # --- Export Environment Variables for other Steps:
 # You can export Environment Variables for other Steps with
