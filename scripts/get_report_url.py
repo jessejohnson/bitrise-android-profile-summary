@@ -1,4 +1,4 @@
-# import requests
+import sys
 
 BASE_URL = "https://api.bitrise.io/v0.1/"
 BITRISE_API_ACCESS_TOKEN = sys.argv[1]
