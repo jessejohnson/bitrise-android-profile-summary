@@ -20,6 +20,9 @@ def get_profile_artifact_slug():
                 return artifact['slug']
 
 def print_artifact_url(slug):
+    if slug is None:
+        print("We could not get the artifact slug. Did you `--profile` your Gradle task?")
+        return
     artifact_url = ARTIFACT_BASE_URL + "/" + slug
     response = requests.get(artifact_url, headers=HEADERS)
     if response.status_code == 200:
