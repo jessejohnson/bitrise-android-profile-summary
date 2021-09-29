@@ -27,7 +27,7 @@ def print_artifact_url(slug):
     response = requests.get(artifact_url, headers=HEADERS)
     if response.status_code == 200:
         artifact_response = response.json()
-        print(artifact_response['expiring_download_url'])
+        print(artifact_response['data']['expiring_download_url'])
 
 artifact_slug = get_profile_artifact_slug()
 print_artifact_url(artifact_slug)
