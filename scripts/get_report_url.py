@@ -1,11 +1,11 @@
 import sys, requests
 
-BASE_URL = "https://api.bitrise.io/v0.1"
-ARTIFACT_BASE_URL = BASE_URL + "/apps/" + APP_SLUG + "/builds/" + BUILD_SLUG + "/artifacts"
 BITRISE_API_ACCESS_TOKEN = sys.argv[1]
 APP_SLUG = sys.argv[2]
 BUILD_SLUG = sys.argv[3]
 
+BASE_URL = "https://api.bitrise.io/v0.1"
+ARTIFACT_BASE_URL = BASE_URL + "/apps/" + APP_SLUG + "/builds/" + BUILD_SLUG + "/artifacts"
 HEADERS = {
     "Authorization": BITRISE_API_ACCESS_TOKEN,
     "Content-Type": "application/json"
