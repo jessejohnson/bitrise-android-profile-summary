@@ -1,14 +1,17 @@
 import glob, os, sys
 from bs4 import BeautifulSoup
 
-REPORT_PATH = sys.argv[1] # local path/to/report is ../build/reports/profile/
-os.chdir(REPORT_PATH)
-REPORT_FILE = glob.glob("*.html")[0]
+REPORT_DIR = sys.argv[1] # local path/to/report is ../build/reports/profile/
 
-with open(REPORT_FILE) as html_report:
-    soup = BeautifulSoup(html_report, 'html.parser')
+def find_report(report_path):
+    os.chdir(report_path)
+    return glob.glob("*.html")[0]
 
-def parse_report():
+def parse_report(file_name):
+
+    with open(file_name) as html_report:
+        soup = BeautifulSoup(html_report, 'html.parser')
+
     # first, we get the total build time
     first_table = soup.find_all('table')[0]
     summary_row = first_table.find_all('tr')[1]
@@ -20,11 +23,17 @@ def parse_report():
     all_rows = last_table.find_all('tr')
     print("Breakdown\n---------")
     print("Module       Duration")
-    for row in all_rows[1:-1]:
+    for row in all_rows[1:]:
         first_cell = row.td
         if not first_cell.attrs:
             module_name = row.find_all('td')[0].string
             duration = row.find_all('td')[1].string
-            print("`{0}`      {1}".format(module_name, duration))
+            if len(module_name) > 1:
+                print("`{0}`      {1}".format(module_name, duration))
 
-parse_report()
+try:
+    report = find_report(REPORT_DIR)
+    parse_report(report)
+except FileNotFoundError:
+    print("There was no profile report in the given directory. :'(")
+    print("Did you `--profile` your Gradle task?")

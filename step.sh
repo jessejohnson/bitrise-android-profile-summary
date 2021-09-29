@@ -2,7 +2,14 @@
 set -ex
 
 # echo "This is the value specified for the input 'example_step_input': ${example_step_input}"
-sh $BITRISE_STEP_SOURCE_DIR/scripts/parse_profile_report.sh
+
+# Set up environment
+pip install requests beautifulsoup4
+# sh $BITRISE_STEP_SOURCE_DIR/scripts/parse_profile_report.sh
+# sh $BITRISE_STEP_SOURCE_DIR/scripts/get_profile_report_url.sh
+
+python $BITRISE_STEP_SOURCE_DIR/scripts/parse_report.py ./build/reports/profile/ | envman add --key REPORT_SUMMARY
+python $BITRISE_STEP_SOURCE_DIR/scripts/get_report_url.py $BITRISE_API_ACCESS_TOKEN $BITRISE_APP_SLUG $BITRISE_BUILD_SLUG | envman add --key ARTIFACT_URL
 #
 # --- Export Environment Variables for other Steps:
 # You can export Environment Variables for other Steps with
