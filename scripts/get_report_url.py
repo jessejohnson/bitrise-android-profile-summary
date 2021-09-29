@@ -1,6 +1,7 @@
 import sys, requests
 
-BASE_URL = "https://api.bitrise.io/v0.1/"
+BASE_URL = "https://api.bitrise.io/v0.1"
+ARTIFACT_BASE_URL = BASE_URL + "/apps/" + APP_SLUG + "/builds/" + BUILD_SLUG + "/artifacts"
 BITRISE_API_ACCESS_TOKEN = sys.argv[1]
 APP_SLUG = sys.argv[2]
 BUILD_SLUG = sys.argv[3]
@@ -11,8 +12,7 @@ HEADERS = {
 }
 
 def get_profile_artifact_slug():
-    artifact_list_url = BASE_URL + "/apps/" + APP_SLUG + "/builds/" + BUILD_SLUG
-    response = requests.get(artifact_list_url, headers=HEADERS)
+    response = requests.get(ARTIFACT_BASE_URL, headers=HEADERS)
     if response.status_code == 200:
         artifact_list_response = response.json()
         for artifact in artifact_list_response['data']:
@@ -20,7 +20,7 @@ def get_profile_artifact_slug():
                 return artifact['slug']
 
 def print_artifact_url(slug):
-    artifact_url = artifact_list_url + "/artifacts/" + slug
+    artifact_url = ARTIFACT_BASE_URL + "/" + slug
     response = requests.get(artifact_url, headers=HEADERS)
     if response.status_code == 200:
         artifact_response = response.json()
