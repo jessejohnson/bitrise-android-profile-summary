@@ -37,3 +37,4 @@ try:
 except FileNotFoundError:
     print("There was no profile report in the given directory. :'(")
     print("Did you `--profile` your Gradle task?")
+    return 1
