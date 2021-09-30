@@ -31,13 +31,9 @@ def parse_report(file_name):
             if len(module_name) > 1:
                 print("`{0}`      {1}".format(module_name, duration))
 
-def run():
-    try:
-        report = find_report(REPORT_DIR)
-        parse_report(report)
-    except FileNotFoundError:
-        print("There was no profile report in the given directory. :'(")
-        print("Did you `--profile` your Gradle task?")
-        return 1
-
-run()
+try:
+    report = find_report(REPORT_DIR)
+    parse_report(report)
+except FileNotFoundError:
+    print("There was no profile report in the given directory. :'(")
+    print("Did you `--profile` your Gradle task?")
