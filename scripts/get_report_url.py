@@ -1,4 +1,4 @@
-import sys, requests
+import sys, os, requests
 
 BITRISE_API_ACCESS_TOKEN = sys.argv[1]
 APP_SLUG = sys.argv[2]
