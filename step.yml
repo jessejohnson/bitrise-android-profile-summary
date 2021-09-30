@@ -1,5 +1,5 @@
 title: |-
-  Summarize Profile Time Report
+  Summarize Profile Report
 summary: |
   This step parses reports from Gradle tasks profiled with `--profile`
 description: |
