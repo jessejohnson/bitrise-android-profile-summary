@@ -1,4 +1,4 @@
-from parse_report import find_report, parse
+from parse_report import find_report, parse_file
 from get_report_url import get_permanent_download_url, get_expiring_download_url
 from send_to_slack import send_slack_message
 
@@ -8,7 +8,7 @@ REPORT_DIR = sys.argv[1]
 
 # First, find and parse report
 report_file = find_report(REPORT_DIR)
-summary = parse(report_file)
+summary = parse_file(report_file)
 
 # Then, get report artifact url
 download_url = get_permanent_download_url()

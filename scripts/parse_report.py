@@ -7,7 +7,7 @@ def find_report(report_path):
     os.chdir(report_path)
     return glob.glob("*.html")[0]
 
-def parse(file_name):
+def parse_file(file_name):
 
     output = ""
 
@@ -19,6 +19,7 @@ def parse(file_name):
     summary_row = first_table.find_all('tr')[1]
     total_duration_cell = summary_row.find_all('td')[1]
     # print("*Total Build Time was {0}*".format(total_duration_cell.string))
+    output += ":wave: Profile Report\n"
     output += "*Total Build Time was {0}*\n".format(total_duration_cell.string)
 
     # then we print the time it took each module (ignoring subtasks) to build
