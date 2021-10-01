@@ -5,14 +5,13 @@ import json
 def send_slack_message(REPORT_SUMMARY, ARTIFACT_URL):
 
     SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
-    # REPORT_SUMMARY = os.environ['REPORT_SUMMARY']
-    # ARTIFACT_URL = os.environ['ARTIFACT_URL']
     BITRISE_BUILD_URL = os.environ['BITRISE_BUILD_URL']
     APP_TITLE = os.environ['BITRISE_APP_TITLE']
     BRANCH = os.environ['BITRISE_GIT_BRANCH']
     WORKFLOW = os.environ['BITRISE_TRIGGERED_WORKFLOW_ID']
 
     data = {
+        "text": ":wave: Profile Report @here",
         "attachments": [
             {
                 "blocks": [
@@ -62,11 +61,10 @@ def send_slack_message(REPORT_SUMMARY, ARTIFACT_URL):
             }
         ]
     }
-
     headers = {"Content-Type": "application/json"}
-
     result = requests.post(SLACK_WEBHOOK_URL, headers=headers, data=json.dumps(data))
-    print(result.status_code)
-    print(result.text)
-
-# send_to_slack()
+    
+    if result.status_code == 200:
+        print("A report summary was sent to Slack!")
+    else:
+        print("Slack webhook failed with {} {}".format(result.status_code, result.text))

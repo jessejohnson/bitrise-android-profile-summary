@@ -1,7 +1,9 @@
 import os, requests
 
 def get_permanent_download_url():
+
     ARTIFACT_URL_MAP = os.environ['BITRISE_PERMANENT_DOWNLOAD_URL_MAP']
+    
     if ARTIFACT_URL_MAP is not None:
         artifacts = ARTIFACT_URL_MAP.split("|")
         for artifact in artifacts:
@@ -32,8 +34,3 @@ def get_expiring_download_url():
                 if response.status_code == 200:
                     artifact_response = response.json()
                     return artifact_response['data']['expiring_download_url']
-
-# download_url = get_permanent_download_url()
-# if download_url is None:
-#     download_url = get_expiring_download_url()
-# print(download_url)

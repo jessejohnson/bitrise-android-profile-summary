@@ -6,14 +6,20 @@ import sys
 
 REPORT_DIR = sys.argv[1]
 
-# First, find and parse report
-report_file = find_report(REPORT_DIR)
-summary = parse_file(report_file)
+try:
+    # First, find and parse report
+    report_file = find_report(REPORT_DIR)
+    print("Found report at {}! /nParsing...".format(report_file))
+    summary = parse_file(report_file)
 
-# Then, get report artifact url
-download_url = get_permanent_download_url()
-if download_url is None:
-    download_url = get_expiring_download_url()
+    # Then, get report artifact url
+    download_url = get_permanent_download_url()
+    if download_url is None:
+        print("We couldn't find a permanent download URL. Falling back to expiring URL...")
+        download_url = get_expiring_download_url()
 
-# Finally, send to Slack!
-send_slack_message(summary, download_url)
+    # Finally, send to Slack!
+    send_slack_message(summary, download_url)
+except FileNotFoundError:
+    print("There was no profile report in the given directory. :'(")
+    print("Did you `--profile` your Gradle task?")
