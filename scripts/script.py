@@ -8,7 +8,7 @@ REPORT_DIR = sys.argv[1]
 
 # First, find and parse report
 report_file = find_report(REPORT_DIR)
-summary = parse_report(report_file)
+summary = parse(report_file)
 
 # Then, get report artifact url
 download_url = get_permanent_download_url()
