@@ -2,6 +2,8 @@ from parse_report import find_report, parse
 from get_report_url import get_permanent_download_url, get_expiring_download_url
 from send_to_slack import send_slack_message
 
+import sys
+
 REPORT_DIR = sys.argv[1]
 
 # First, find and parse report
