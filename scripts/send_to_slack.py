@@ -11,7 +11,7 @@ def send_slack_message(REPORT_SUMMARY, ARTIFACT_URL):
     WORKFLOW = os.environ['BITRISE_TRIGGERED_WORKFLOW_ID']
 
     data = {
-        "text": ":wave: Profile Report @here",
+        "text": ":wave: Profile Report",
         "attachments": [
             {
                 "blocks": [
@@ -53,7 +53,7 @@ def send_slack_message(REPORT_SUMMARY, ARTIFACT_URL):
                         "elements": [
                             {
                                 "type": "plain_text",
-                                "text": "{} | {} | {}".format(APP_TITLE, BRANCH, WORKFLOW)
+                                "text": "{} | {} | {} workflow".format(APP_TITLE, BRANCH, WORKFLOW)
                             }
                         ]
                     }
