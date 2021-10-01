@@ -33,7 +33,7 @@ def get_expiring_download_url():
                     artifact_response = response.json()
                     return artifact_response['data']['expiring_download_url']
 
-download_url = get_permanent_download_url()
-if download_url is None:
-    download_url = get_expiring_download_url()
-print(download_url)
+# download_url = get_permanent_download_url()
+# if download_url is None:
+#     download_url = get_expiring_download_url()
+# print(download_url)

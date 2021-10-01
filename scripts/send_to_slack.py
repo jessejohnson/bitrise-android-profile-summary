@@ -2,11 +2,11 @@ import os
 import requests
 import json
 
-def send_to_slack():
+def send_slack_message(REPORT_SUMMARY, ARTIFACT_URL):
 
     SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
-    REPORT_SUMMARY = os.environ['REPORT_SUMMARY']
-    ARTIFACT_URL = os.environ['ARTIFACT_URL']
+    # REPORT_SUMMARY = os.environ['REPORT_SUMMARY']
+    # ARTIFACT_URL = os.environ['ARTIFACT_URL']
     BITRISE_BUILD_URL = os.environ['BITRISE_BUILD_URL']
     APP_TITLE = os.environ['BITRISE_APP_TITLE']
     BRANCH = os.environ['BITRISE_GIT_BRANCH']
@@ -69,4 +69,4 @@ def send_to_slack():
     print(result.status_code)
     print(result.text)
 
-send_to_slack()
+# send_to_slack()
