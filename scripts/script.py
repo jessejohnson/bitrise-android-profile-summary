@@ -9,7 +9,7 @@ REPORT_DIR = sys.argv[1]
 try:
     # First, find and parse report
     report_file = find_report(REPORT_DIR)
-    print("Found report at {}! /nParsing...".format(report_file))
+    print("Parsing report in {}...".format(report_file))
     summary = parse_file(report_file)
 
     # Then, get report artifact url

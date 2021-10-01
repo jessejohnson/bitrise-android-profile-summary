@@ -51,6 +51,6 @@ in the [bitrise CLI repository](https://github.com/bitrise-io/bitrise/blob/maste
 
 ## TODO
 
-1. [] Save summaries to plain text file as a Bitrise artifact
-2. [] Send summaries to Slack (so we don't rely on creating env vars for other Steps, etc)
-3. [] Add output as attachment to Slack message (needs Slack API, maybe)
+1. ~~[] Save summaries to plain text file as a Bitrise artifact~~
+2. [x] Send summaries to Slack (so we don't rely on creating env vars for other Steps, etc)
+3. ~~[] Add output as attachment to Slack message (needs Slack API, maybe)~~
